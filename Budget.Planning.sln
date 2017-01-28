@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budget.Planning.DataAccess"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budget.Planning.Sync", "Budget.Planning.Sync\Budget.Planning.Sync.csproj", "{2839D033-09B6-4EA8-81C3-659B1DBA3656}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budget.Planning.Web", "Budget.Planning.Web\Budget.Planning.Web.csproj", "{5A1292BA-731F-4D7F-B9BA-F37286473B90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2839D033-09B6-4EA8-81C3-659B1DBA3656}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2839D033-09B6-4EA8-81C3-659B1DBA3656}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2839D033-09B6-4EA8-81C3-659B1DBA3656}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A1292BA-731F-4D7F-B9BA-F37286473B90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A1292BA-731F-4D7F-B9BA-F37286473B90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A1292BA-731F-4D7F-B9BA-F37286473B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A1292BA-731F-4D7F-B9BA-F37286473B90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
