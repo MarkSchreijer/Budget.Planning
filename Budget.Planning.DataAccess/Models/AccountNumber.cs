@@ -1,0 +1,12 @@
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Budget.Planning.DataAccess.Models
+{
+    [Table("AccountNumber")]
+    public class AccountNumber
+    {
+        public int Id { get; set; }
+        public string Number { get; set; }
+        public string Name { get; set; }
+    }
+}

@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<script>
+    $(document).ready(function() {
+        $("#syncSucceeded").hide();
+        $("#syncFailed").hide();
+
+        $("#btnSync").click(function () {
+            var myArray = new Array();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Sync")',
+                dataType: "text",
+                success: function (data) {
+                    var obj = jQuery.parseJSON(data);
+                    console.log(obj);
+                    if (obj.Status === true) {
+                        $("#syncFailed").hide();
+                        $("#syncSucceeded").text("Synchronisatie niet gelukt, " + obj.Message);
+                        $("#syncSucceeded").css("visibility", "visible").fadeIn();
+                    } else {
+                        console.log(obj);
+                        $("#syncSucceeded").hide();
+                        $("#syncFailed").text("Synchronisatie niet gelukt, " + obj.Message);
+                        $("#syncFailed").css("visibility", "visible").fadeIn();
+                    }
+                },
+                error: function () {
+                    $("#syncSucceeded").hide();
+                    $("#syncFailed").css("visibility", "visible").fadeIn();
+                }
+            });
+        });
+    });
+</script>
+
+<div class="row">
+    <div class="col-md-6"><h2>Index</h2></div>
+</div>
+<div class="row">
+    <div class="col-md-6"><button type="button" class="btn btn-info" id="btnSync">Info</button></div>
+    <div class="col-md-6 alert alert-success" role="alert" id="syncSucceeded"></div>
+    <div class="col-md-6 alert alert-danger" role="alert" id="syncFailed"></div>
+</div>
