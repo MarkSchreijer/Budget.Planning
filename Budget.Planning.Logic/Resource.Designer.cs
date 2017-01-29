@@ -77,5 +77,23 @@ namespace Budget.Planning.Logic {
                 return ResourceManager.GetString("FileNotFound", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Synchronisatie niet geslaagd..
+        /// </summary>
+        internal static string TransactionNotSucceeded {
+            get {
+                return ResourceManager.GetString("TransactionNotSucceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Synchronisatie geslaagd..
+        /// </summary>
+        internal static string TransactionSucceeded {
+            get {
+                return ResourceManager.GetString("TransactionSucceeded", resourceCulture);
+            }
+        }
     }
 }

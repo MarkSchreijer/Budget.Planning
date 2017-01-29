@@ -8,22 +8,20 @@
         $("#syncFailed").hide();
 
         $("#btnSync").click(function () {
-            var myArray = new Array();
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("Sync")',
                 dataType: "text",
                 success: function (data) {
                     var obj = jQuery.parseJSON(data);
-                    console.log(obj);
                     if (obj.Status === true) {
                         $("#syncFailed").hide();
-                        $("#syncSucceeded").text("Synchronisatie niet gelukt, " + obj.Message);
+                        $("#syncSucceeded").text(obj.Message + ", " + obj.ErrorMessage);
                         $("#syncSucceeded").css("visibility", "visible").fadeIn();
                     } else {
                         console.log(obj);
                         $("#syncSucceeded").hide();
-                        $("#syncFailed").text("Synchronisatie niet gelukt, " + obj.Message);
+                        $("#syncFailed").text(obj.Message + ", " + obj.ErrorMessage);
                         $("#syncFailed").css("visibility", "visible").fadeIn();
                     }
                 },

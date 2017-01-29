@@ -1,33 +1,40 @@
-﻿using System.IO;
+﻿using System;
+using System.Configuration;
+using System.IO;
 
 namespace Budget.Planning.Logic
 {
     public class Sync : ISync
     {
-        private readonly string _transactionFile = @"C:\Temp\Transactions\transactions.txt";
+        private readonly string _transactionFile =ConfigurationManager.AppSettings["transactionFile"];
 
         public SyncModel SyncTransactions()
         {
             if (File.Exists(_transactionFile))
             {
                 return ReadTransactionsFile();
-
-                //return new SyncModel {Status = true, Message = "Bestand gevonden"};
             }
             else
-                return new SyncModel {Status = false, Message = Resource.FileNotFound};
+                return new SyncModel {Status = false, Message = Resource.TransactionNotSucceeded, ErrorMessage = Resource.FileNotFound};
         }
 
         private SyncModel ReadTransactionsFile()
         {
             var lines = System.IO.File.ReadAllLines(_transactionFile);
 
-            foreach (var line in lines)
+            try
             {
-                var transaction = line.Split(',');
+                foreach (var line in lines)
+                {
+                    var transaction = line.Split(',');
+                }
+            }
+            catch (Exception e)
+            {
+                return new SyncModel { Status = true, Message = Resource.TransactionSucceeded, ErrorMessage = e.Message };
             }
 
-            return new SyncModel {Status = true, Message = Resource.AllTransactionsProcessed};
+            return new SyncModel {Status = true, Message= Resource.TransactionSucceeded, ErrorMessage = Resource.AllTransactionsProcessed};
         }
     }
 
@@ -35,5 +42,6 @@ namespace Budget.Planning.Logic
     {
         public bool Status { get; set; }
         public string Message { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

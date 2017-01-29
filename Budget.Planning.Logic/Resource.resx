@@ -123,4 +123,10 @@
   <data name="FileNotFound" xml:space="preserve">
     <value>Bestand niet gevonden.</value>
   </data>
+  <data name="TransactionNotSucceeded" xml:space="preserve">
+    <value>Synchronisatie niet geslaagd.</value>
+  </data>
+  <data name="TransactionSucceeded" xml:space="preserve">
+    <value>Synchronisatie geslaagd.</value>
+  </data>
 </root>
