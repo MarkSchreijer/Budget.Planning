@@ -92,8 +92,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountNumberStore.cs" />
     <Compile Include="BudgetPlanningContext.cs" />
     <Compile Include="Helpers\Enums.cs" />
+    <Compile Include="IAccountNumberStore.cs" />
     <Compile Include="Migrations\201701291828338_Initial.cs" />
     <Compile Include="Migrations\201701291828338_Initial.Designer.cs">
       <DependentUpon>201701291828338_Initial.cs</DependentUpon>

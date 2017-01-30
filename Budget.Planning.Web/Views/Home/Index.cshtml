@@ -16,12 +16,12 @@
                     var obj = jQuery.parseJSON(data);
                     if (obj.Status === true) {
                         $("#syncFailed").hide();
-                        $("#syncSucceeded").text(obj.Message + ", " + obj.ErrorMessage);
+                        $("#syncSucceeded").text(obj.Message + " " + obj.ErrorMessage);
                         $("#syncSucceeded").css("visibility", "visible").fadeIn();
                     } else {
                         console.log(obj);
                         $("#syncSucceeded").hide();
-                        $("#syncFailed").text(obj.Message + ", " + obj.ErrorMessage);
+                        $("#syncFailed").text(obj.Message + " " + obj.ErrorMessage);
                         $("#syncFailed").css("visibility", "visible").fadeIn();
                     }
                 },

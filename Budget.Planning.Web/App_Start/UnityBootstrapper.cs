@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Budget.Planning.DataAccess;
 using Budget.Planning.Logic;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Mvc;
@@ -27,6 +28,7 @@ namespace Budget.Planning.Web
             // register all your components with the container here
             // This is the important line to edit
             container.RegisterType<ISync, Sync>();
+            container.RegisterType<IAccountNumberStore, AccountNumberStore>();
         }
     }
 }

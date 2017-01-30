@@ -16,7 +16,8 @@ namespace Budget.Planning.DataAccess.Migrations
                p => p.Id,
                 new AccountNumber { Number = "NL18RABO0329190474", Name = "M. Schreijer Eo" },
                 new AccountNumber { Number = "NL18RABO0317043455", Name = "M.C. Schreijer" },
-                new AccountNumber { Number = "NL83RABO0321816625", Name = "M.J. Schreijer" }
+                new AccountNumber { Number = "NL83RABO0321816625", Name = "M.J. Schreijer" },
+                new AccountNumber { Number = "NL83RABO3291330102", Name = "M. Schreijer Eo" }
                 );
         }
     }
