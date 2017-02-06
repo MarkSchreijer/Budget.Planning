@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using Budget.Planning.DataAccess;
 using Budget.Planning.DataAccess.Helpers;
 using Budget.Planning.DataAccess.Models;
+using CsvHelper;
+using CsvHelper.Configuration;
 
 namespace Budget.Planning.Logic
 {
@@ -47,44 +50,12 @@ namespace Budget.Planning.Logic
 
         private void ProcessTransactions()
         {
-            var accountNumbers = AccountNumbers();
-            var lines = File.ReadAllLines(_transactionFile);
-            var transactions = new List<Transaction>();
+            TextReader textReader = new StreamReader(_transactionFile);
 
-            transactions.AddRange(lines.Select(line => line.Split(',')).Select(transactionArray => new Transaction
-            {
-                AccountNumberId = DetermineAccountNumberId(transactionArray[0], accountNumbers),
-                Valuta = DetermineValuta(transactionArray[1]),
-                InterestDate = DetermineTransactionDate(transactionArray[2]),
-                Description2 = transactionArray[10]
-            }));
-        }
-
-        private static int DetermineAccountNumberId(string accountNumber, List<AccountNumber> accountNumbers)
-        {
-            return string.IsNullOrEmpty(accountNumber) ? 0 : accountNumbers.Find(a => a.Number == accountNumber.Trim('"')).Id;
-        }
-
-        private static Valuta DetermineValuta(string valuta)
-        {
-            switch (valuta.Trim('"'))
-            {
-                case "Eur":
-                    return Valuta.Eur;
-                case "Usd":
-                    return Valuta.Usd;
-                default:
-                    return Valuta.Eur;
-            }
-        }
-
-        private static DateTime DetermineTransactionDate(string date)
-        {
-            if (string.IsNullOrEmpty(date))
-                return new DateTime();
-
-            return new DateTime(int.Parse(date.Trim('"').Substring(0, 4)), int.Parse(date.Trim('"').Substring(4, 2)),
-                int.Parse(date.Trim('"').Substring(6, 2)));
+            var csvReader = new CsvReader(textReader);
+            csvReader.Configuration.HasHeaderRecord = false;
+            csvReader.Configuration.RegisterClassMap<MapTransaction>();
+            var test = csvReader.GetRecords<Transaction>().ToList();
         }
 
         private void ArchivingTransactionFile()
@@ -108,5 +79,92 @@ namespace Budget.Planning.Logic
         public bool Status { get; set; }
         public string Message { get; set; }
         public string ErrorMessage { get; set; }
+    }
+
+    public sealed class MapTransaction : CsvClassMap<Transaction>
+    {
+        public MapTransaction()
+        {
+            Map(m => m.AccountNumberId).Index(0);
+            Map(m => m.Valuta).ConvertUsing(r => ParseValuta(r.GetField<string>(1)));
+            Map(m => m.InterestDate).ConvertUsing(r => ParseTransactionDate(r.GetField<string>(2)));
+            Map(m => m.DebitCredit).ConvertUsing(r => r.GetField(3) == "C" ? DebetCredit.Credit : DebetCredit.Debet);
+            Map(m => m.Amount).Index(4).TypeConverterOption(NumberStyles.Currency);
+            Map(m => m.ContraAccountId).Index(5);
+            Map(m => m.ToName).Index(6);
+            Map(m => m.BookingDate).ConvertUsing(r => ParseTransactionDate(r.GetField(7)));
+            Map(m => m.BookingCode).ConvertUsing(r => ParseBookingCode(r.GetField(8)));
+        }
+
+        private static DateTime ParseTransactionDate(string date)
+        {
+            if (string.IsNullOrEmpty(date))
+                return new DateTime();
+
+            return new DateTime(int.Parse(date.Trim('"').Substring(0, 4)), int.Parse(date.Trim('"').Substring(4, 2)),
+                int.Parse(date.Trim('"').Substring(6, 2)));
+        }
+
+        private static Valuta ParseValuta(string valuta)
+        {
+            switch (valuta.Trim('"'))
+            {
+                case "Eur":
+                    return Valuta.Eur;
+                case "Usd":
+                    return Valuta.Usd;
+                default:
+                    return Valuta.Eur;
+            }
+        }
+
+        private static BookingCode ParseBookingCode(string bookingCode)
+        {
+            switch (bookingCode.Trim('"'))
+            {
+                case "Ac":
+                    return BookingCode.Ac;
+                case "Ba":
+                    return BookingCode.Ba;
+                case "Bc":
+                    return BookingCode.Bc;
+                case "Bg":
+                    return BookingCode.Bg;
+                case "Cb":
+                    return BookingCode.Cb;
+                case "Ck":
+                    return BookingCode.Ck;
+                case "Db":
+                    return BookingCode.Db;
+                case "Eb":
+                    return BookingCode.Eb;
+                case "Ei":
+                    return BookingCode.Ei;
+                case "Fb":
+                    return BookingCode.Fb;
+                case "Ga":
+                    return BookingCode.Ga;
+                case "Gb":
+                    return BookingCode.Gb;
+                case "Id":
+                    return BookingCode.Id;
+                case "Kh":
+                    return BookingCode.Kh;
+                case "Ma":
+                    return BookingCode.Ma;
+                case "Sb":
+                    return BookingCode.Sb;
+                case "Tb":
+                    return BookingCode.Tb;
+                case "Sp":
+                    return BookingCode.Sp;
+                case "Cr":
+                    return BookingCode.Cr;
+                case "D":
+                    return BookingCode.D;
+                default:
+                    return BookingCode.Ac;
+            }
+        }
     }
 }

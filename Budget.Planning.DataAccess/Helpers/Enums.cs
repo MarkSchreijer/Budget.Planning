@@ -10,7 +10,7 @@ namespace Budget.Planning.DataAccess.Helpers
 
     public enum DebetCredit
     {
-        Debit,
+        Debet,
         Credit
     }
 
@@ -55,6 +55,6 @@ namespace Budget.Planning.DataAccess.Helpers
         [Description("Tegoed")]
         Cr,
         [Description("Tekort")]
-        D,
+        D
     }
 }
