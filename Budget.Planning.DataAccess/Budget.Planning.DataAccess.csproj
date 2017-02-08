@@ -92,18 +92,46 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountNumberStore.cs" />
+    <Compile Include="Migrations\201702082254582_MasterTables_added.cs" />
+    <Compile Include="Migrations\201702082254582_MasterTables_added.Designer.cs">
+      <DependentUpon>201702082254582_MasterTables_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702082315495_Booking_MOdified.cs" />
+    <Compile Include="Migrations\201702082315495_Booking_MOdified.Designer.cs">
+      <DependentUpon>201702082315495_Booking_MOdified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702082317246_Fill_MasterTables.cs" />
+    <Compile Include="Migrations\201702082317246_Fill_MasterTables.Designer.cs">
+      <DependentUpon>201702082317246_Fill_MasterTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookingCode.cs" />
+    <Compile Include="Models\DebetCredit.cs" />
+    <Compile Include="Models\Valuta.cs" />
+    <Compile Include="Stores\AccountNumberStore.cs" />
     <Compile Include="BudgetPlanningContext.cs" />
-    <Compile Include="Helpers\Enums.cs" />
-    <Compile Include="IAccountNumberStore.cs" />
+    <Compile Include="Stores\IAccountNumberStore.cs" />
     <Compile Include="Migrations\201701291828338_Initial.cs" />
     <Compile Include="Migrations\201701291828338_Initial.Designer.cs">
       <DependentUpon>201701291828338_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702082110021_TransactionModel_Changes.cs" />
+    <Compile Include="Migrations\201702082110021_TransactionModel_Changes.Designer.cs">
+      <DependentUpon>201702082110021_TransactionModel_Changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702082146341_TransactionModel_Changes_AccountNumber.cs" />
+    <Compile Include="Migrations\201702082146341_TransactionModel_Changes_AccountNumber.Designer.cs">
+      <DependentUpon>201702082146341_TransactionModel_Changes_AccountNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702082221589_RenamedAccountNumberToAccount.cs" />
+    <Compile Include="Migrations\201702082221589_RenamedAccountNumberToAccount.Designer.cs">
+      <DependentUpon>201702082221589_RenamedAccountNumberToAccount.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountNumber.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stores\ITransactionStore.cs" />
+    <Compile Include="Stores\TransactionStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -117,6 +145,24 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201701291828338_Initial.resx">
       <DependentUpon>201701291828338_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702082110021_TransactionModel_Changes.resx">
+      <DependentUpon>201702082110021_TransactionModel_Changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702082146341_TransactionModel_Changes_AccountNumber.resx">
+      <DependentUpon>201702082146341_TransactionModel_Changes_AccountNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702082221589_RenamedAccountNumberToAccount.resx">
+      <DependentUpon>201702082221589_RenamedAccountNumberToAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702082254582_MasterTables_added.resx">
+      <DependentUpon>201702082254582_MasterTables_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702082315495_Booking_MOdified.resx">
+      <DependentUpon>201702082315495_Booking_MOdified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702082317246_Fill_MasterTables.resx">
+      <DependentUpon>201702082317246_Fill_MasterTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

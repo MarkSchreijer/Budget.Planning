@@ -2,11 +2,10 @@
 
 namespace Budget.Planning.DataAccess.Models
 {
-    [Table("Account")]
-    public class Account
+    [Table("Valuta")]
+    public class Valuta
     {
         public int Id { get; set; }
-        public string Number { get; set; }
-        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

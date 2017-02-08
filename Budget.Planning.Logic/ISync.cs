@@ -7,6 +7,6 @@ namespace Budget.Planning.Logic
     {
         SyncModel SyncTransactions();
 
-        List<AccountNumber> AccountNumbers();
+        List<Account> AccountNumbers();
     }
 }

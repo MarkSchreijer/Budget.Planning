@@ -1,18 +1,16 @@
 ﻿using System;
-using Budget.Planning.DataAccess.Helpers;
 
 namespace Budget.Planning.DataAccess.Models
 {
     public class Transaction
     {
         public int Id { get; set; }
-        public string AccountNumberId { get; set; }
+        public Account Account { get; set; }
         public Valuta Valuta { get; set; }
         public DateTime InterestDate { get; set; }
         public DebetCredit DebitCredit { get; set; }
         public decimal Amount { get; set; }
-        public string ContraAccountId { get; set; }
-        public string ToName { get; set; }
+        public Account ContraAccount { get; set; }
         public DateTime BookingDate { get; set; }
         public BookingCode BookingCode { get; set; }
         public string Filler { get; set; }

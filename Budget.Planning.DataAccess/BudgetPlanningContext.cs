@@ -10,7 +10,7 @@ namespace Budget.Planning.DataAccess
         {
         }
 
-        public DbSet<AccountNumber> AccountNumbers { get; set; }
+        public DbSet<Account> AccountNumbers { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

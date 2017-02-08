@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Budget.Planning.DataAccess;
+using Budget.Planning.DataAccess.Stores;
 using Budget.Planning.Logic;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Mvc;
@@ -29,6 +30,7 @@ namespace Budget.Planning.Web
             // This is the important line to edit
             container.RegisterType<ISync, Sync>();
             container.RegisterType<IAccountNumberStore, AccountNumberStore>();
+            container.RegisterType<ITransactionStore, TransactionStore>();
         }
     }
 }
