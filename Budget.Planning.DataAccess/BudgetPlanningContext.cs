@@ -12,6 +12,9 @@ namespace Budget.Planning.DataAccess
 
         public DbSet<Account> AccountNumbers { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<DebetCredit> DebetCredits { get; set; }
+        public DbSet<Valuta> Valutas { get; set; }
+        public DbSet<BookingCode> BookingCodes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

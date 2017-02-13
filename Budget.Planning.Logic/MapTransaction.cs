@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Web;
 using Budget.Planning.DataAccess.Models;
 using Budget.Planning.DataAccess.Stores;
 using CsvHelper.Configuration;
@@ -16,8 +13,7 @@ namespace Budget.Planning.Logic
             Map(m => m.Account).ConvertUsing(r => ParseAccountNumber(r.GetField<string>(0), string.Empty));
             Map(m => m.Valuta).ConvertUsing(r => ParseValuta(r.GetField<string>(1)));
             Map(m => m.InterestDate).ConvertUsing(r => ParseTransactionDate(r.GetField<string>(2)));
-            // ToDo Database aanpassingen
-            Map(m => m.DebitCredit).ConvertUsing(r => r.GetField(3) == "C" ? DebetCredit.Credit : DebetCredit.Debet);
+            Map(m => m.DebitCredit).ConvertUsing(r => ParseCreditEdit(r.GetField(3)));
             Map(m => m.Amount).Index(4).TypeConverterOption(NumberStyles.Currency);
             Map(m => m.ContraAccount).ConvertUsing(r => ParseAccountNumber(r.GetField(5), r.GetField(6)));
             Map(m => m.BookingDate).ConvertUsing(r => ParseTransactionDate(r.GetField(7)));
@@ -42,6 +38,14 @@ namespace Budget.Planning.Logic
             return accountNumber;
         }
 
+        private static DebetCredit ParseCreditEdit(string debetCredit)
+        {
+            var debetCreditStore = new DebetCreditStore();
+
+            var returnValue = debetCreditStore.FindDebetCreditByCode(debetCredit);
+            return returnValue;
+        }
+
         private static DateTime ParseTransactionDate(string date)
         {
             if (string.IsNullOrEmpty(date))
@@ -51,68 +55,20 @@ namespace Budget.Planning.Logic
                 int.Parse(date.Trim('"').Substring(6, 2)));
         }
 
-        // ToDo Database aanpassingen 
         private static Valuta ParseValuta(string valuta)
         {
-            switch (valuta.Trim('"'))
-            {
-                case "Eur":
-                    return Valuta.Eur;
-                case "Usd":
-                    return Valuta.Usd;
-                default:
-                    return Valuta.Eur;
-            }
+            var valutaStore = new ValutaStore();
+
+            var returnValue = valutaStore.FindValutaByDescription(valuta);
+            return returnValue;
         }
 
-        // ToDo Database aanpassingen
         private static BookingCode ParseBookingCode(string bookingCode)
         {
-            switch (bookingCode.Trim('"'))
-            {
-                case "Ac":
-                    return BookingCode.Ac;
-                case "Ba":
-                    return BookingCode.Ba;
-                case "Bc":
-                    return BookingCode.Bc;
-                case "Bg":
-                    return BookingCode.Bg;
-                case "Cb":
-                    return BookingCode.Cb;
-                case "Ck":
-                    return BookingCode.Ck;
-                case "Db":
-                    return BookingCode.Db;
-                case "Eb":
-                    return BookingCode.Eb;
-                case "Ei":
-                    return BookingCode.Ei;
-                case "Fb":
-                    return BookingCode.Fb;
-                case "Ga":
-                    return BookingCode.Ga;
-                case "Gb":
-                    return BookingCode.Gb;
-                case "Id":
-                    return BookingCode.Id;
-                case "Kh":
-                    return BookingCode.Kh;
-                case "Ma":
-                    return BookingCode.Ma;
-                case "Sb":
-                    return BookingCode.Sb;
-                case "Tb":
-                    return BookingCode.Tb;
-                case "Sp":
-                    return BookingCode.Sp;
-                case "Cr":
-                    return BookingCode.Cr;
-                case "D":
-                    return BookingCode.D;
-                default:
-                    return BookingCode.Ac;
-            }
+            var bookingCodeStore = new BookingCodeStore();
+
+            var returnValue = bookingCodeStore.FindBookingCodeByCode(bookingCode);
+            return returnValue;
         }
     }
 }

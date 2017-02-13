@@ -31,6 +31,7 @@ namespace Budget.Planning.Web
             container.RegisterType<ISync, Sync>();
             container.RegisterType<IAccountNumberStore, AccountNumberStore>();
             container.RegisterType<ITransactionStore, TransactionStore>();
+            container.RegisterType<IDebetCreditStore, DebetCreditStore>();
         }
     }
 }

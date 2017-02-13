@@ -104,11 +104,20 @@
     <Compile Include="Migrations\201702082317246_Fill_MasterTables.Designer.cs">
       <DependentUpon>201702082317246_Fill_MasterTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702132005241_Update_DebetCredit.cs" />
+    <Compile Include="Migrations\201702132005241_Update_DebetCredit.Designer.cs">
+      <DependentUpon>201702132005241_Update_DebetCredit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702132006315_Fill_Updated_DebetCredit.cs" />
+    <Compile Include="Migrations\201702132006315_Fill_Updated_DebetCredit.Designer.cs">
+      <DependentUpon>201702132006315_Fill_Updated_DebetCredit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\BookingCode.cs" />
     <Compile Include="Models\DebetCredit.cs" />
     <Compile Include="Models\Valuta.cs" />
     <Compile Include="Stores\AccountNumberStore.cs" />
     <Compile Include="BudgetPlanningContext.cs" />
+    <Compile Include="Stores\BookingCodeStore.cs" />
     <Compile Include="Stores\IAccountNumberStore.cs" />
     <Compile Include="Migrations\201701291828338_Initial.cs" />
     <Compile Include="Migrations\201701291828338_Initial.Designer.cs">
@@ -130,8 +139,13 @@
     <Compile Include="Models\AccountNumber.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stores\IBookingCodeStore.cs" />
     <Compile Include="Stores\ITransactionStore.cs" />
+    <Compile Include="Stores\IDebetCreditStore.cs" />
+    <Compile Include="Stores\IValutaStore.cs" />
     <Compile Include="Stores\TransactionStore.cs" />
+    <Compile Include="Stores\DebetCreditStore.cs" />
+    <Compile Include="Stores\ValutaStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -163,6 +177,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702082317246_Fill_MasterTables.resx">
       <DependentUpon>201702082317246_Fill_MasterTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702132005241_Update_DebetCredit.resx">
+      <DependentUpon>201702132005241_Update_DebetCredit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702132006315_Fill_Updated_DebetCredit.resx">
+      <DependentUpon>201702132006315_Fill_Updated_DebetCredit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
